@@ -1,0 +1,75 @@
+body {
+    background-color:green;
+}
+
+.main-background {
+    margin: 0 auto;
+    width: 276px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.background {
+    width: 276px;
+    height: 500px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-image: url('../assets/sprites/background-day.png');
+    background-repeat: no-repeat;
+}
+
+.foreground {
+    position: absolute;
+    bottom: 0;
+    left:0;
+    background-image: url('../assets/sprites/base.png');
+    background-repeat: no-repeat;
+    z-index: 1;
+    height: 113px;
+    width: 276px;
+}
+
+.obstacles {
+    position: absolute;
+    margin-left: 276px;
+    height: 250px;
+    width: 50px;
+    margin-top: 0;
+}
+
+.bird {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    margin-top: 200px;
+    margin-left: 100px;
+}
+
+#displayMessage {
+    position: absolute;
+    background: red;
+    width: 276px;
+    text-align: center;
+    top: 50%;
+    z-index: 2; 
+}
+
+.your-score {
+    position: absolute;
+    top: 0;
+    left: 100px;
+}
+
+.high-score {
+    position: absolute;
+    top: 20px;
+    left: 100px;
+}
+
+.tutorial{
+    position: absolute;
+    top: 40px;
+    left: 100px;
+}

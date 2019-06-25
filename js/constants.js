@@ -1,0 +1,16 @@
+const GRAVITY = 5;
+const BACKGROUND_WIDTH = 276;
+const BACKGROUND_HEIGHT = 505;
+const FOREGROUND_HEIGHT = 113;
+const PIPE_HEIGHT = 250;
+const PIPE_WIDTH = 50;
+const PIPE_GAP = 100;
+const PIPE_DIST = 150;
+const TOP_PIPE_MAX_POS = -50;
+const TOP_PIPE_MIN_POS = -120;
+
+const BIRD_INIT_X = 50;
+const BIRD_INIT_Y = 200;
+const BIRD_HEIGHT = 30;
+const BIRD_WIDTH = 30;
+const FLY_CONST = 30;

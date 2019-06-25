@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Flappy Bird</title>
+  <link rel="icon" type="image/ico" href="./assets/sprites/redbird-midflap.png" />
+
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/layout.css">
+</head>
+
+<body>
+  <div class="main-background" id="mainBackground">
+    <div class="background" id="background"></div>
+    <div class="foreground" id="forground"></div>
+    <div id="displayMessage"></div>
+  </div>
+  <div>
+    <span class="your-score" id="yourScore">Score: 0</span>
+    <span class="high-score" id="highScore">High Score: 0</span>
+    <span class="tutorial">Pressing Any key gives you wings</span>
+  </div>
+
+  <script src="js/constants.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    var isinitial = true;    
+    var message =document.getElementById('displayMessage');
+    if(isinitial) {
+      message.innerHTML = 'Welcome To the Game World! Press any key to start the game';
+    }
+    window.addEventListener('keypress', function (event) {
+      if (event.keyCode != 0 && isinitial) {
+        isinitial = false;
+        var startGame = new GameAnimation().init();
+      }
+    });
+  </script>
+</body>
+
+</html>
