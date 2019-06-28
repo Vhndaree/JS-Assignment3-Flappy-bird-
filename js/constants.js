@@ -8,6 +8,7 @@ const PIPE_GAP = 100;
 const PIPE_DIST = 150;
 const TOP_PIPE_MAX_POS = -50;
 const TOP_PIPE_MIN_POS = -120;
+const OBSTACLE_SPEED = 5;
 
 const BIRD_INIT_X = 50;
 const BIRD_INIT_Y = 200;

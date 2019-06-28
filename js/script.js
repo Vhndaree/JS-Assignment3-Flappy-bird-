@@ -1,13 +1,4 @@
-var obstacleGap = 140;
-var highScore = 0;
-var yourScore = document.getElementById('yourScore');
-var highScore = document.getElementById('highScore');
 var gameHighScore = 0;
-var gameAnimationInterval;
-
-var scoreAudio = new Audio('../assets/audio/point.ogg');
-var hitAudio = new Audio('../assets/audio/hit.ogg');
-var dieAudio = new Audio('../assets/audio/die.wav');
 
 function Obstacles() {
   this.x = BACKGROUND_WIDTH;
@@ -25,7 +16,7 @@ function Obstacles() {
   }
 
   this.move = function () {
-    this.x -= 1;
+    this.x -= OBSTACLE_SPEED;
     this.draw();
   }
 
@@ -85,6 +76,16 @@ function GameAnimation() {
   var isplayerAlive = true;
   var score = 0;
 
+  var obstacleGap = 140;
+  var yourScore = document.getElementById('yourScore');
+  var highScore = document.getElementById('highScore');
+  var gameAnimationInterval;
+
+  var scoreAudio = new Audio('../assets/audio/point.ogg');
+  var hitAudio = new Audio('../assets/audio/hit.ogg');
+  var dieAudio = new Audio('../assets/audio/die.wav');
+
+
   var generateObstacles = function () {
     var obstacleTop = new Obstacles();
     var obstacleBottom = new Obstacles();
@@ -105,7 +106,7 @@ function GameAnimation() {
   }
 
   var moveObstacles = function () {
-    obstacleGap++;
+    obstacleGap += OBSTACLE_SPEED;
     flappyBird.move();
     if (obstacleGap === PIPE_DIST) {
       generateObstacles();
@@ -134,22 +135,26 @@ function GameAnimation() {
     document.addEventListener('keyup', function () {
       flappyBird.fly();
       if (!isplayerAlive && event.keyCode != 0) {
-        isplayerAlive = true;
-        flappyBird.removeElement();
-        flappyBird.removeElement();
-        obstacles.forEach(obstacle => {
-          obstacle[0].removeElement();
-          obstacle[1].removeElement();
-        })
-        score = 0;
-        delete (flappyBird);
-        delete (flappyBird);
-        delete (startGame);
-        obstacleGap = 140;
-        isplayerAlive = true
-        startGame = new GameAnimation().init();
+        resetGame();
       }
     });
+  }
+
+  var resetGame = function () {
+    isplayerAlive = true;
+    flappyBird.removeElement();
+    flappyBird.removeElement();
+    obstacles.forEach(obstacle => {
+      obstacle[0].removeElement();
+      obstacle[1].removeElement();
+    })
+    score = 0;
+    delete (flappyBird);
+    delete (flappyBird);
+    delete (startGame);
+    obstacleGap = 140;
+    isplayerAlive = true
+    startGame = new GameAnimation().init();
   }
 
   var stopGame = function () {
@@ -157,7 +162,7 @@ function GameAnimation() {
     clearInterval(gameAnimationInterval);
     isplayerAlive = false;
     message.style.display = 'block'
-    if (score === gameHighScore) {
+    if (score === gameHighScore && score > 0) {
       message.innerHTML = 'Congratulations, You set new record<br>Your Score: ' + score + '<br> press any key to restart';
     } else {
       message.innerHTML = 'Oops! You got Hit, Better Luck Next Time<br>press any key to restart<br>Your Score: ' + score;
@@ -187,7 +192,7 @@ function GameAnimation() {
   }
 
   var scoreCounter = function (pipe) {
-    if (flappyBird.x + BIRD_WIDTH == pipe.x + PIPE_WIDTH) {
+    if (flappyBird.x + BIRD_WIDTH >= pipe.x + PIPE_WIDTH && flappyBird.x + BIRD_WIDTH <= pipe.x + PIPE_WIDTH + OBSTACLE_SPEED) {
       score++;
       scoreAudio.play();
     }
