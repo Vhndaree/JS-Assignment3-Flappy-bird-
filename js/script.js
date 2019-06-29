@@ -184,7 +184,8 @@ function GameAnimation() {
         && flappyBird.x < obstacles[i][0].x
         && (flappyBird.y <= obstacles[i][0].height
           || flappyBird.y + BIRD_HEIGHT >= obstacles[i][0].height + PIPE_GAP
-        )) {
+        )
+      ) {
         hitAudio.play();
         stopGame();
       }
